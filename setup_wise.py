@@ -23,8 +23,8 @@ images = io.BytesIO(images.content)
 vectors = tarfile.open(mode='r:gz', fileobj=vectors)
 images = tarfile.open(mode='r:gz', fileobj=images)
 
-vectors.extractall(path='/wise/projects')
-images.extractall(path='/wise/data')
+vectors.extractall(path='/wise/projects', filter='tar')
+images.extractall(path='/wise/data', filter='tar')
 
 print("Successfully extracted. Launching WISE...")
 
