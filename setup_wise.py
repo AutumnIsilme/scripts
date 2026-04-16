@@ -7,6 +7,8 @@ import sys
 VECTORS_TAR_GZ = "https://filesender.open-science-cloud.ec.europa.eu/download.php?token=63a7235c-0265-4fac-bec7-4e4c6caa4c85&files_ids=2174933"
 IMAGES_TAR_GZ  = "https://filesender.open-science-cloud.ec.europa.eu/download.php?token=12c6c6c4-4efe-4897-bb25-222345f135cf&files_ids=2174940"
 
+print("Requesting tarballs...")
+
 vectors = requests.get(VECTORS_TAR_GZ)
 images = requests.get(IMAGES_TAR_GZ)
 
@@ -20,8 +22,12 @@ if images.status_code != 200:
 vectors = io.BytesIO(vectors.content)
 images = io.BytesIO(images.content)
 
+print("Opening tarballs...")
+
 vectors = tarfile.open(mode='r:gz', fileobj=vectors)
 images = tarfile.open(mode='r:gz', fileobj=images)
+
+print("Extracting tarballs...")
 
 vectors.extractall(path='/wise/projects', filter='tar')
 images.extractall(path='/wise/data', filter='tar')
