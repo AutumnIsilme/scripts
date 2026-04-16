@@ -26,6 +26,6 @@ images = tarfile.open(mode='r:gz', fileobj=images)
 vectors.extractall(path='/wise/projects', filter='tar')
 images.extractall(path='/wise/data', filter='tar')
 
-print("Successfully extracted. Launching WISE...")
+print(f"Successfully extracted. Launching WISE for project /wise/projects/{str(sys.argv[1])}...")
 
-subprocess.run(["python3", "serve.py", "--project-dir", f"projects/{sys.argv[1]}"], cwd="/wise")
+subprocess.run(["python3", "serve.py", "--project-dir", f"projects/{str(sys.argv[1])}"], cwd="/wise")
